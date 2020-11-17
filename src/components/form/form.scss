@@ -1,0 +1,45 @@
+.url-form,
+.route-form {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.url-form {
+    margin-top: 20px;
+}
+
+form input[type=submit],
+form input[type=button] {
+    margin-left: 10px;
+    background-color: #e63946;
+    border-radius: 5px;
+    color: white;
+    outline: none;
+}
+
+.route-form input:focus {
+    background-color: #edf2f4;
+    color:black
+}
+
+label {
+    padding-right: 10px;
+}
+
+form input[type=text] {
+    outline: none;
+}
+
+.result-area {
+    display: block;
+    outline: none;
+    resize: none;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+
