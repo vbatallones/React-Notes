@@ -1,54 +1,43 @@
-import React from 'react';
+
 import './form.scss';
 
-function Form (props) {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         value: '',
-    //         // route: ''
-    //     };
+function Form({handleRoute, handleList, handleChange, method, url, body}) {
 
-    //     this.handleSubmit = this.handleSubmit.bind(this);
-    //     // this.handleRoute = this.handleRoute.bind(this);
-    // }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const url = e.target.url.value;
 
-        const response = await fetch(url);
+        let options = { method };
+        if (body) options.body = body;
+        console.log(body)
+        const response = await fetch(url, options);
         const data = await response.json()
         console.log(data)
 
-        props.handleList(data)
+        handleList({
+            count: body.length,
+            results: data,
+        })
+
     }
-    
-    const  handleRoute =(event) => {
-        event.preventDefault();
-        console.log(this.state.route)
-        this.setState({route: event.target.value});
-    }
-        // let result
-        // if (this.state.value) {
-        //     result = this.state.route + " " + this.state.value
-        // }
-        
-        return ( 
-            <form onSubmit={handleSubmit}>
-                <div className="url-form">
-                    <label>HTTP:</label>
-                    <input type="text"  name="url"/>
-                    <input type="submit"  value="Route Me"/>
-                </div>
-                    <div className="route-form">
-                        <input type="button" onClick={handleRoute} value="GET"/>
-                        <input type="button" onClick={handleRoute} value="POST"/>
-                        <input type="button" onClick={handleRoute} value="PUT"/>
-                        <input type="button" onClick={handleRoute} value="DELETE"/>
-                    </div>
-            </form>
-        )
-    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <div className="url-form">
+                <label>HTTP:</label>
+                <input type="text" name="url" onChange={handleChange} />
+                <input type="submit" value="Route Me" />
+            </div>
+
+            <div className="route-form">
+                <input type="button" onClick={handleRoute} value="GET" />
+                <input type="button" onClick={handleRoute} value="POST" />
+                <input type="button" onClick={handleRoute} value="PUT" />
+                <input type="button" onClick={handleRoute} value="DELETE" />
+            </div>
+            <textarea className="result-area" onChange={handleChange} name="body" rows="10" cols="30"/>
+        </form>
+    )
+}
 
 
 export default Form
