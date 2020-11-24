@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import JSONPretty from 'react-json-pretty';
+import './result.scss'
 import 'react-json-pretty/themes/monikai.css';
 
-class Result extends Component {
-
+function Result({res}) {
     
+        if (res) {
+            return (
+                <>
+                    <JSONPretty className="result-data" data={res}></JSONPretty>
+                </>
+            )
+        } else {
+            return null
+        }
+        
     
-    render() {
-        let list = this.props.list.results;
-        console.log(list)
-
-        return(
-            <>
-            <JSONPretty data={list}></JSONPretty>
-            </>
-        )
-    }
 }
 
 export default Result
